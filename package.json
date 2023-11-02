@@ -1,0 +1,22 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "A todo list app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngeloThys/todo-list.git"
+  },
+  "keywords": [
+    "todo"
+  ],
+  "author": "Angelo Thys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AngeloThys/todo-list/issues"
+  },
+  "homepage": "https://github.com/AngeloThys/todo-list#readme"
+}
