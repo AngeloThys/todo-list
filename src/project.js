@@ -1,4 +1,4 @@
-import { idGenerator } from 'helpers';
+import { idGenerator } from './helpers';
 
 // Factory function that produces projects
 export default function projectFactory() {

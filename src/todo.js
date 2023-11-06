@@ -1,5 +1,5 @@
 import { isDate } from 'date-fns';
-import { idGenerator } from 'helpers';
+import { idGenerator } from './helpers';
 
 // Factory Function that produces todo objects
 export default function todoFactory() {
