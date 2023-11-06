@@ -1,6 +1,6 @@
 // Factory function that produces projects
 export default function projectFactory() {
-  const id = uniqueIdGenerator();
+  const id = IdGenerator();
   let name;
   let color;
   const todoList = [];
@@ -62,4 +62,4 @@ function uniqueNumberGenerator() {
 }
 
 // We create an id generator.
-const uniqueIdGenerator = uniqueNumberGenerator();
+const IdGenerator = uniqueNumberGenerator();
