@@ -45,6 +45,8 @@ export default function projectFactory() {
     return false;
   };
 
+  const getTodoList = () => todoList;
+
   return {
     isA: 'project',
     getId,
@@ -54,6 +56,7 @@ export default function projectFactory() {
     getColor,
     addTodo,
     removeTodo,
+    getTodoList,
   };
 }
 
