@@ -1,8 +1,9 @@
 import { isDate } from 'date-fns';
+import { idGenerator } from 'helpers';
 
 // Factory Function that produces todo objects
 export default function todoFactory() {
-  const id = IdGenerator();
+  const id = idGeneratorOne();
   let title;
   let description;
   let dueDate;
@@ -71,10 +72,4 @@ export default function todoFactory() {
   };
 }
 
-function randomNumberGenerator() {
-  let id = 0;
-
-  return () => id++;
-}
-
-const IdGenerator = randomNumberGenerator();
+const idGeneratorOne = idGenerator();

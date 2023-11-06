@@ -1,6 +1,8 @@
+import { idGenerator } from 'helpers';
+
 // Factory function that produces projects
 export default function projectFactory() {
-  const id = IdGenerator();
+  const id = idGeneratorOne();
   let name;
   let color;
   const todoList = [];
@@ -55,11 +57,4 @@ export default function projectFactory() {
   };
 }
 
-function uniqueNumberGenerator() {
-  let id = 0;
-
-  return () => id++;
-}
-
-// We create an id generator.
-const IdGenerator = uniqueNumberGenerator();
+const idGeneratorOne = idGenerator();
