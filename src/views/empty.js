@@ -1,0 +1,10 @@
+export default function setEmptyView() {
+  const container = document.createElement('div');
+  container.className = 'empty';
+  container.innerHTML = `
+        <div>
+            <h2>Try adding a todo...</h2>
+            <button class="addTodo">Add a Todo</button>
+        </div>
+    `;
+}
