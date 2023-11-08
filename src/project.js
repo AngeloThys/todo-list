@@ -4,7 +4,7 @@ import { idGenerator } from './helpers';
 export default function projectFactory() {
   const id = idGeneratorOne();
   let name;
-  let color;
+  let hexColor;
   const todoList = [];
 
   const getId = () => id;
@@ -18,16 +18,16 @@ export default function projectFactory() {
   };
   const getName = () => name;
 
-  const setColor = (newColor) => {
+  const setHexColor = (newColor) => {
     //hex color regex pattern
     const hexColors = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
     if (hexColors.test(newColor)) {
-      return (color = String(newColor));
+      return (hexColor = String(newColor));
     }
 
     return false;
   };
-  const getColor = () => color;
+  const getHexColor = () => hexColor;
 
   const addTodo = (newTodo) => {
     if (newTodo.isA === 'todo') {
@@ -52,8 +52,8 @@ export default function projectFactory() {
     getId,
     setName,
     getName,
-    setColor,
-    getColor,
+    setHexColor,
+    getHexColor,
     addTodo,
     removeTodo,
     getTodoList,
