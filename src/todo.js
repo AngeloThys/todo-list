@@ -4,6 +4,7 @@ import { idGenerator } from './helpers';
 // Factory Function that produces todo objects
 export default function todoFactory() {
   const id = idGeneratorOne();
+  let projectId;
   let title;
   let description;
   let dueDate;
@@ -11,6 +12,15 @@ export default function todoFactory() {
   let status;
 
   const getId = () => id;
+
+  const setProjectId = (newProjectId) => {
+    if (Number.isInteger(newProjectId)) {
+      return (projectId = newProjectId);
+    }
+
+    return false;
+  }
+  const getProjectId = () => projectId;
 
   const setTitle = (newTitle) => {
     if (newTitle.length > 1 && newTitle.length < 26) {
@@ -59,6 +69,8 @@ export default function todoFactory() {
   return {
     isA: 'todo',
     getId,
+    setProjectId,
+    getProjectId,
     setTitle,
     getTitle,
     setDescription,
