@@ -13,8 +13,18 @@ function projectsItemExists() {
   }
 }
 
+function createDefaultProject() {
+  const defaultProject = projectFactory();
+
+  defaultProject.setName('Default');
+  defaultProject.setHexColor('#808080');
+}
+
 function createProjectsItem() {
-  localStorage.setItem('projects', '[]');
+  const defaultProject = createDefaultProject();
+  const projectsArray = [defaultProject];
+
+  localStorage.setItem('projects', JSON.stringify(projectsArray));
 }
 
 function getProjectsValue() {
@@ -26,8 +36,8 @@ function getProjectsValue() {
   }
 }
 
-function setProjectsValue(value) {
-  localStorage.setItem('projects', JSON.stringify(value));
+function setProjectsValue(projectsArray) {
+  localStorage.setItem('projects', JSON.stringify(projectsArray));
 }
 
 // Project object functions
@@ -37,19 +47,20 @@ export function createProject() {
   const projects = getProjectsValue();
 
   projects.push(project);
-
   setProjectsValue(projects);
+
+  return project;
 }
 
-export function getProject(id) {
+export function getProject(projectId) {
   const projects = getProjectsValue();
 
-  return projects.find((project) => project.getId() === id);
+  return projects.find((project) => project.getId() === projectId);
 }
 
-export function deleteProject(id) {
+export function deleteProject(projectId) {
   const projects = getProjectsValue();
-  const project = getProject(id);
+  const project = getProject(projectId);
   const index = projects.indexOf(project);
 
   projects.splice(index, 1);
@@ -60,12 +71,67 @@ export function updateProject(project) {
 
   deleteProject(project.getId());
   projects.push(project);
+  setProjectsValue(projects);
+}
+
+// localStorage Todos item functions
+
+function todosItemExists() {
+  if (localStorage.getItem('todos')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function createTodosItem() {
+  localStorage.setItem('todos', '[]');
+}
+
+function getTodosValue() {
+  if (todosItemExists()) {
+    return JSON.parse(localStorage.getItem('todos'));
+  } else {
+    createTodosItem();
+    return JSON.parse(localStorage.getItem('todos'));
+  }
+}
+
+function setTodosValue(todosArray) {
+  localStorage.setItem('todos', JSON.stringify(todosArray));
 }
 
 // Todo object functions
 
-export function createTodo() {
+export function createTodo(projectId = 0) {
   const todo = todoFactory();
+  const todos = getTodosValue();
 
-  localStorage.setItem;
+  todo.setProjectId(projectId);
+  todos.push(todo);
+  setTodosValue(todos);
+
+  return todo;
+}
+
+export function getTodo(todoId) {
+  const todos = getTodosValue();
+
+  return todos.find((todo) => todo.getId() === todoId);
+}
+
+export function deleteTodo(todoId) {
+  const todos = getTodosValue();
+  const todo = getTodo(todoId);
+  const index = todos.indexOf(todo);
+
+  todos.splice(index, 1);
+}
+
+export function updateTodo(todo) {
+  const todos = getTodosValue();
+
+  deleteTodo(todo.getId());
+  todos.push(todo);
+  setTodosValue(todos);
 }
