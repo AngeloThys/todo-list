@@ -5,7 +5,6 @@ export default function projectFactory() {
   const id = idGeneratorOne();
   let name;
   let hexColor;
-  const todoList = [];
 
   const getId = () => id;
 
@@ -29,24 +28,6 @@ export default function projectFactory() {
   };
   const getHexColor = () => hexColor;
 
-  const addTodo = (newTodo) => {
-    if (newTodo.isA === 'todo') {
-      return todoList.push(newTodo);
-    }
-
-    return false;
-  };
-  const removeTodo = (oldTodo) => {
-    if (oldTodo.isA === 'todo') {
-      const index = todoList.indexOf(oldTodo);
-      return todoList.splice(index, 1);
-    }
-
-    return false;
-  };
-
-  const getTodoList = () => todoList;
-
   return {
     isA: 'project',
     getId,
@@ -54,9 +35,6 @@ export default function projectFactory() {
     getName,
     setHexColor,
     getHexColor,
-    addTodo,
-    removeTodo,
-    getTodoList,
   };
 }
 
