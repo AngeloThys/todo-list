@@ -58,9 +58,8 @@ export function getProject(projectId) {
   return projects.find((project) => project.getId() === projectId);
 }
 
-export function deleteProject(projectId) {
+export function deleteProject(project) {
   const projects = getProjectsValue();
-  const project = getProject(projectId);
   const index = projects.indexOf(project);
 
   projects.splice(index, 1);
@@ -120,9 +119,8 @@ export function getTodo(todoId) {
   return todos.find((todo) => todo.getId() === todoId);
 }
 
-export function deleteTodo(todoId) {
+export function deleteTodo(todo) {
   const todos = getTodosValue();
-  const todo = getTodo(todoId);
   const index = todos.indexOf(todo);
 
   todos.splice(index, 1);
