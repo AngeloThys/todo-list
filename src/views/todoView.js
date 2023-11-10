@@ -5,16 +5,25 @@ export default function setTodoView(project) {
   const main = document.querySelector('main');
   const todoView = document.createElement('div');
   const todoElementList = createTodoElementList(project);
-  const addTodoButton = document.createElement('button');
+  const addTodoButton = createAddTodoButton();
 
   todoView.className = 'todoView';
   todoView.replaceChildren(todoElementList);
-
-  addTodoButton.className = 'addTodo';
-  addTodoButton.addEventListener('click', showTodoCreationModal); // the todo buttons should invoke a function that opens a modal with a todo creation form.
   todoView.appendChild(addTodoButton);
 
   main.replaceChildren(todoView);
+}
+
+function createAddTodoButton() {
+  const addTodoButton = document.createElement('button');
+  const createTodoDialog = document.querySelector('.createTodo');
+
+  addTodoButton.className = 'addTodo';
+  addTodoButton.addEventListener('click', () => {
+    createTodoDialog.showModal();
+  });
+
+  return addTodoButton;
 }
 
 function createTodoElementList(project) {
