@@ -27,7 +27,7 @@ function createProjectsItem() {
   localStorage.setItem('projects', JSON.stringify(projectsArray));
 }
 
-function getProjectsValue() {
+export function getProjectsValue() {
   if (projectsItemExists()) {
     return JSON.parse(localStorage.getItem('projects'));
   } else {
@@ -87,7 +87,7 @@ function createTodosItem() {
   localStorage.setItem('todos', '[]');
 }
 
-function getTodosValue() {
+export function getTodosValue() {
   if (todosItemExists()) {
     return JSON.parse(localStorage.getItem('todos'));
   } else {
