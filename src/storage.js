@@ -1,6 +1,6 @@
 // CRUD for projects and todos in localStorage
 
-import todoFactory from './todo';
+import { todoFactory, todoFunctions } from './todo';
 import { projectFactory, projectFunctions } from './project';
 
 // localStorage Projects item functions
@@ -101,12 +101,23 @@ function createTodosItem() {
 }
 
 export function getTodosValue() {
+  let todoList;
   if (todosItemExists()) {
-    return JSON.parse(localStorage.getItem('todos'));
+    todoList = JSON.parse(localStorage.getItem('todos'));
+    populateTodoFunctions(todoList);
+    return todoList;
   } else {
     createTodosItem();
-    return JSON.parse(localStorage.getItem('todos'));
+    todoList = JSON.parse(localStorage.getItem('todos'));
+    populateTodoFunctions(todoList);
+    return todoList;
   }
+}
+
+function populateTodoFunctions(todoList) {
+  todoList.forEach((todo) => {
+    Object.assign(todo, todoFunctions);
+  });
 }
 
 function setTodosValue(todosArray) {
