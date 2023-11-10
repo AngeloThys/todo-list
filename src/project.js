@@ -1,13 +1,10 @@
 import { idGenerator } from './helpers';
 
-// Factory function that produces projects
 export function projectFactory() {
   return Object.assign(
     {
       isA: 'project',
       _id: idGeneratorOne(),
-      _name: '',
-      _hexColor: '',
     },
     projectFunctions
   );
