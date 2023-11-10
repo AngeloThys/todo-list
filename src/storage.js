@@ -1,7 +1,7 @@
 // CRUD for projects and todos in localStorage
 
 import todoFactory from './todo';
-import projectFactory from './project';
+import { projectFactory, projectFunctions } from './project';
 
 // localStorage Projects item functions
 
@@ -18,22 +18,35 @@ function createDefaultProject() {
 
   defaultProject.setName('Default');
   defaultProject.setHexColor('#808080');
+
+  return defaultProject;
 }
 
 function createProjectsItem() {
   const defaultProject = createDefaultProject();
   const projectsArray = [defaultProject];
 
-  localStorage.setItem('projects', JSON.stringify(projectsArray));
+  setProjectsValue(projectsArray);
 }
 
 export function getProjectsValue() {
+  let projectList;
   if (projectsItemExists()) {
-    return JSON.parse(localStorage.getItem('projects'));
+    projectList = JSON.parse(localStorage.getItem('projects'));
+    populateProjectFunctions(projectList);
+    return projectList;
   } else {
     createProjectsItem();
-    return JSON.parse(localStorage.getItem('projects'));
+    projectList = JSON.parse(localStorage.getItem('projects'));
+    populateProjectFunctions(projectList);
+    return projectList;
   }
+}
+
+function populateProjectFunctions(projectList) {
+  projectList.forEach((project) => {
+    Object.assign(project, projectFunctions); // create the projectFunctions
+  });
 }
 
 function setProjectsValue(projectsArray) {
