@@ -1,17 +1,32 @@
-function getProjects() {
-  const stringProjects = localStorage.getItem('projects');
-  return JSON.parse(stringProjects);
-}
+import * as storage from '../storage';
+import setView from './main';
 
 export function listProjectNames() {
-  const listProjects = document.querySelector('.listProjects');
-  const projects = getProjects();
-  listProjects.replaceChildren(); // wipes the view.
-  projects.forEach((project) => {
-    const button = document.createElement('button');
-    button.textContent = project.name;
-    button.classList.add('project');
-    button.addEventListener('click', fillMain(project)); // shows the todos
-    listProjects.appendChild(button);
+  const projectListContainer = document.querySelector('.projectList');
+  const projectButtonList = createProjectButtonList();
+
+  projectListContainer.replaceChildren(projectButtonList);
+}
+
+function createProjectButtonList() {
+  const projectList = storage.getProjectsValue();
+  let projectButtonList;
+
+  projectList.forEach((project) => {
+    projectButtonList.push(createProjectButton(project));
   });
+
+  return projectButtonList;
+}
+
+function createProjectButton(project) {
+  const projectButton = document.createElement('button');
+
+  button.className = 'project';
+  button.textContent = project.getName();
+  button.addEventListener('click', () => {
+    setView(project);
+  });
+
+  return projectButton;
 }
