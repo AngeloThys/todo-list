@@ -3,21 +3,29 @@ import * as filters from '../filters.js';
 
 export default function setTodoView(project) {
   const main = document.querySelector('main');
-  const todos = filters.getProjectTodos(project.getId());
-  const container = document.createElement('div');
+  const todoView = document.createElement('div');
+  const todoElementList = createTodoElementList(project);
   const addTodoButton = document.createElement('button');
 
-  container.className = 'todoView';
-
-  todoList.forEach((todo) => {
-    createTodoElement(project, todo); // manage the created todo container elements
-  });
+  todoView.className = 'todoView';
+  todoView.replaceChildren(todoElementList);
 
   addTodoButton.className = 'addTodo';
   addTodoButton.addEventListener('click', showTodoCreationModal); // the todo buttons should invoke a function that opens a modal with a todo creation form.
-  container.appendChild(addTodoButton);
+  todoView.appendChild(addTodoButton);
 
-  main.replaceChildren(container);
+  main.replaceChildren(todoView);
+}
+
+function createTodoElementList(project) {
+  const todos = filters.getProjectTodos(project.getId());
+  let todoElementList;
+
+  todos.forEach((todo) => {
+    todoElementList.push(createTodoElement(todo));
+  });
+
+  return todoElementList;
 }
 
 function createTodoElement(project, todo) {
@@ -30,7 +38,15 @@ function createTodoElement(project, todo) {
   const dueDateInput = createDueDateInput(todo);
   const statusInput = createStatusInput(todo);
 
-  todoContainer.replaceChildren(priorityButton, expandButton, deleteButton, titleInput, descriptionP, dueDateInput, statusInput);
+  todoContainer.replaceChildren(
+    priorityButton,
+    expandButton,
+    deleteButton,
+    titleInput,
+    descriptionP,
+    dueDateInput,
+    statusInput
+  );
 
   return todoContainer;
 }
