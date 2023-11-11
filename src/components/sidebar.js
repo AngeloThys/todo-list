@@ -1,16 +1,15 @@
 import * as storage from '../storage';
-import setView from './main';
+import { setView } from './main';
 
 export function listProjectNames() {
   const projectListContainer = document.querySelector('.projectList');
   const projectButtonList = createProjectButtonList();
-
-  projectListContainer.replaceChildren(projectButtonList);
+  projectListContainer.replaceChildren(...projectButtonList);
 }
 
 function createProjectButtonList() {
   const projectList = storage.getProjectsValue();
-  let projectButtonList;
+  let projectButtonList = [];
 
   projectList.forEach((project) => {
     projectButtonList.push(createProjectButton(project));
@@ -22,9 +21,9 @@ function createProjectButtonList() {
 function createProjectButton(project) {
   const projectButton = document.createElement('button');
 
-  button.className = 'project';
-  button.textContent = project.getName();
-  button.addEventListener('click', () => {
+  projectButton.className = 'project';
+  projectButton.textContent = project.getName();
+  projectButton.addEventListener('click', () => {
     setView(project);
   });
 
