@@ -1,14 +1,23 @@
+import * as components from '../components/components';
+
 export default function setEmptyView() {
   const main = document.querySelector('main');
+  const emptyView = document.createElement('div');
+  const emptyTodoListMessage = createEmptyTodoListMessage();
+  const addTodoButton = components.createAddTodoButton();
 
-  const container = document.createElement('div');
-  container.className = 'emptyView';
-  container.innerHTML = `
-        <div>
-            <h2>Try adding a todo...</h2>
-            <button class="addTodo">Add a Todo</button> 
-        </div>
-    `;
+  emptyView.className = 'emptyView';
 
-  main.replaceChildren(container); // I think I'm missing an event listener on the button.
+  emptyView.replaceChildren(emptyTodoListMessage, addTodoButton);
+
+  main.replaceChildren(emptyView);
+}
+
+function createEmptyTodoListMessage() {
+  const emptyTodoListMessage = document.createElement('h2');
+
+  emptyTodoListMessage.className = 'emptyTodoListMessage';
+  emptyTodoListMessage.textContent = 'Try adding a todo...';
+
+  return emptyTodoListMessage;
 }
