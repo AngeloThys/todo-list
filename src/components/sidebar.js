@@ -36,14 +36,48 @@ function createProjectButtonList() {
 
 function createProjectButton(project) {
   const projectButton = document.createElement('button');
+  const projectButtonP = createProjectButtonP(project);
+  const projectButtonLogo = createProjectButtonLogo();
 
   projectButton.className = 'project';
-  projectButton.textContent = project.getName();
+  projectButton.replaceChildren(projectButtonP, projectButtonLogo);
   projectButton.addEventListener('click', () => {
     setView(project);
+    projectButtonP.classList.add('active');
+    projectButtonLogo.classList.add('active');
+  });
+  projectButton.addEventListener('blur', () => {
+    projectButtonP.classList.remove('active');
+    projectButtonLogo.classList.remove('active');
+  })
+  projectButton.addEventListener('mouseenter', () => {
+    projectButtonP.classList.add('hover');
+    projectButtonLogo.classList.add('hover');
+  });
+  projectButton.addEventListener('mouseleave', () => {
+    projectButtonP.classList.remove('hover');
+    projectButtonLogo.classList.remove('hover');
   });
 
   return projectButton;
+}
+
+function createProjectButtonP(project) {
+  const projectButtonP = document.createElement('p');
+
+  projectButtonP.className = 'projectName';
+  projectButtonP.textContent = project.getName();
+
+  return projectButtonP;
+}
+
+function createProjectButtonLogo() {
+  const projectButtonLogo = document.createElement('img');
+
+  projectButtonLogo.className = 'projectLogo';
+  projectButtonLogo.src = '../images/arrow-right.svg';
+
+  return projectButtonLogo;
 }
 
 function createAddProjectButton() {
