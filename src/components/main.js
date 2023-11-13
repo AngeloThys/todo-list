@@ -18,7 +18,7 @@ export function setView(project) {
 
 export function setDefaultView() {
   const projectList = storage.getProjectsValue();
-  const defaultProjectId = 0;
+  const defaultProjectId = 1;
   const defaultProject = projectList.find(
     (project) => project.getId() === defaultProjectId
   );
