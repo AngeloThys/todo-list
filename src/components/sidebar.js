@@ -40,16 +40,11 @@ function createProjectButton(project) {
   const projectButtonLogo = createProjectButtonLogo();
 
   projectButton.className = 'project';
+  projectButton.setAttribute('data-project-id', project.getId());
   projectButton.replaceChildren(projectButtonP, projectButtonLogo);
   projectButton.addEventListener('click', () => {
     setView(project);
-    projectButtonP.classList.add('active');
-    projectButtonLogo.classList.add('active');
   });
-  projectButton.addEventListener('blur', () => {
-    projectButtonP.classList.remove('active');
-    projectButtonLogo.classList.remove('active');
-  })
   projectButton.addEventListener('mouseenter', () => {
     projectButtonP.classList.add('hover');
     projectButtonLogo.classList.add('hover');
@@ -83,12 +78,22 @@ function createProjectButtonLogo() {
 function createAddProjectButton() {
   const addProjectButton = document.createElement('button');
   const createProjectDialog = document.querySelector('.createProject');
+  const addProjectLogo = createAddProjectLogo();
 
   addProjectButton.className = 'addProject';
-  addProjectButton.textContent = 'Add a project'; // this needs an svg
+  addProjectButton.appendChild(addProjectLogo); // this needs an svg
   addProjectButton.addEventListener('click', () => {
     createProjectDialog.showModal();
   });
 
   return addProjectButton;
+}
+
+function createAddProjectLogo() {
+  const addTodoLogo = document.createElement('img');
+
+  addTodoLogo.src = '../images/plus.svg';
+  addTodoLogo.className = 'addProjectLogo';
+
+  return addTodoLogo;
 }
