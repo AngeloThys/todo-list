@@ -1,17 +1,19 @@
 import { isDate } from 'date-fns';
 import { idGenerator } from './helpers';
 
+const todoIdGenerator = idGenerator();
+
 export function todoFactory() {
+  let _id = todoIdGenerator("todoId");
+
   return Object.assign(
     {
       isA: 'todo',
-      _id: idGeneratorOne(),
+      _id,
     },
     todoFunctions
   );
 }
-
-const idGeneratorOne = idGenerator();
 
 function getId() {
   return this._id;
@@ -30,7 +32,7 @@ function getProjectId() {
 }
 
 function setTitle(newTitle) {
-  if (newTitle.length > 1 && newTitle.length < 26) {
+  if (newTitle.length > 0 && newTitle.length < 26) {
     return (this._title = newTitle);
   }
 

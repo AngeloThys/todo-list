@@ -1,23 +1,25 @@
 import { idGenerator } from './helpers';
 
+const projectIdGenerator = idGenerator();
+
 export function projectFactory() {
+  let _id = projectIdGenerator("projectId");
+
   return Object.assign(
     {
       isA: 'project',
-      _id: idGeneratorOne(),
+      _id,
     },
     projectFunctions
   );
 }
-
-const idGeneratorOne = idGenerator();
 
 function getId() {
   return this._id;
 }
 
 function setName(newName) {
-  if (newName.length > 1 && newName.length < 26) {
+  if (newName.length > 0 && newName.length < 26) {
     return (this._name = String(newName));
   }
 
