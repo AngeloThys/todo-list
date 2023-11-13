@@ -1,13 +1,24 @@
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
   const createTodoDialog = document.querySelector('.createTodo');
+  const addTodoLogo = createAddTodoLogo();
 
   addTodoButton.className = 'addTodo';
+  addTodoButton.appendChild(addTodoLogo);
   addTodoButton.addEventListener('click', () => {
     createTodoDialog.showModal();
   });
 
   return addTodoButton;
+}
+
+function createAddTodoLogo() {
+  const addTodoLogo = document.createElement('img');
+
+  addTodoLogo.src = '../images/plus.svg';
+  addTodoLogo.className = 'addTodoLogo';
+
+  return addTodoLogo;
 }
 
 export function createTodoContainer(todo) {
