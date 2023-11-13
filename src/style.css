@@ -2,7 +2,7 @@
   --primary-dark: #538083;
   --secondary-dark: #426669;
   --tertiary-dark: #75999c;
-  --backgrond-dark: #98b3b5;
+  --background-dark: #98b3b5;
   --primary-gold: #ffd43b;
   --secondary-gold: #ccaa2f;
   --tertiary-gold: #ffdd62;
@@ -33,9 +33,9 @@ body {
 aside {
   z-index: 1;
   grid-area: sidebar;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 2rem;
+  display: grid;
+  grid-template-rows: auto 4fr 5fr;
+  padding: 2rem 2rem;
   background-color: var(--primary-dark);
   border-right: 4px solid var(--secondary-dark);
   box-shadow: 2px 0 4px var(--secondary-dark);
@@ -90,6 +90,67 @@ header {
   box-shadow: 0 0 4px var(--secondary-gold);
 }
 
+.filters {
+  place-self: center start;
+  display: grid;
+  gap: 2rem;
+}
+
+.projects {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.projects h2 {
+  text-decoration: underline solid 4px var(--primary-gold);
+}
+
+.filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.filter::before {
+  position:absolute;
+  left: -10px;
+  content: '';
+  border: 0;
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  transition: all 0.1s ease-in-out;
+}
+
+.filter::after {
+  position:absolute;
+  left: -10px;
+  content: '';
+  border: 0;
+  height: 105%;
+  width: 115%;
+  border-radius: 50%;
+  transform: rotate(20deg);
+  transition: all ease-in-out;
+}
+
+.filter:hover::after,
+.filter:hover::before {
+  border: 2px solid var(--primary-gold);
+}
+
+.sortIcon {
+  height: 1.2rem;
+  width: 1.2rem;
+  fill: var(--tertiary-gold);
+  stroke: var(--primary-gold);
+  stroke-width: 2;
+}
+
 main {
   grid-area: main;
   background-color: #ececec;
@@ -138,7 +199,7 @@ main {
   transform: scale(0.85);
 }
 
-/* Components - Sidebar - Project */
+/* Components - Sidebar - projectButton */
 .projectList {
   margin: 1rem 0;
 }
@@ -179,7 +240,6 @@ main {
   background-color: white;
 }
 
-/* try adding the svg directly instead of an image with the svg as source. */
 .projectLogo {
   transition: filter 0.3s step-end;
   fill: black;
@@ -188,9 +248,35 @@ main {
 }
 
 .projectLogo.hover {
-  filter: invert(98%) sepia(78%) saturate(2055%) hue-rotate(322deg) brightness(100%) contrast(105%);
+  filter: invert(98%) sepia(78%) saturate(2055%) hue-rotate(322deg)
+    brightness(100%) contrast(105%);
 }
 
 .projectLogo.active {
-  filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(169deg) brightness(105%) contrast(106%);
+  filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(169deg)
+    brightness(105%) contrast(106%);
+}
+
+/* Components - Sidebar - addProjectButton */
+.addProject {
+  display: grid;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--secondary-gold);
+  border-radius: 4px;
+  background-color: var(--primary-gold);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.addProject:hover {
+  transform: scale(0.98);
+}
+
+.addProject:active {
+  transform: scale(0.95);
+}
+
+.addProjectLogo {
+  place-self: center;
 }
