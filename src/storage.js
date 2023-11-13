@@ -73,15 +73,19 @@ export function getProject(projectId) {
 
 export function deleteProject(project) {
   const projects = getProjectsValue();
-  const index = projects.indexOf(project);
+  const projectToBeDeleted = getProject(project.getId());
+  const index = projects.indexOf(projectToBeDeleted);
 
   projects.splice(index, 1);
+  setProjectsValue(projects);
+
+  return projects;
 }
 
 export function updateProject(project) {
-  const projects = getProjectsValue();
+  deleteProject(project);
 
-  deleteProject(project.getId());
+  const projects = getProjectsValue();
   projects.push(project);
   setProjectsValue(projects);
 }
@@ -145,15 +149,19 @@ export function getTodo(todoId) {
 
 export function deleteTodo(todo) {
   const todos = getTodosValue();
-  const index = todos.indexOf(todo);
+  const todoToBeDeleted = getTodo(todo.getId());
+  const index = todos.indexOf(todoToBeDeleted);
 
   todos.splice(index, 1);
+  setTodosValue(todos);
+
+  return todos;
 }
 
 export function updateTodo(todo) {
-  const todos = getTodosValue();
+  deleteTodo(todo);
 
-  deleteTodo(todo.getId());
+  const todos = getTodosValue();
   todos.push(todo);
   setTodosValue(todos);
 }
