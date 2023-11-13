@@ -13,21 +13,80 @@
     <title>TODO APP</title>
   </head>
   <body>
-    <header>
-    </header>
-    <aside>
-      <h2 class="sortToday">Today</h2>
-      <h2 class="sortWeek">Week</h2>
-      <div class="projects">
-        <h2>Projects</h2>
-        <div class="listProjects">
-
-        </div>
-        <button class="addProject">Add a project</button>
+    <dialog class="createTodo"></dialog>
+    <dialog class="modifyTodo"></dialog>
+    <dialog class="createProject">
+      <div class="createProjectContainer">
+        <h2>Project</h2>
+        <form class="projectForm">
+          <div class="projectNameContainer">
+            <label for="projectName">Name</label>
+            <input type="text" name="projectName" id="projectName" />
+          </div>
+          <div class="projectColorContainer">
+            <label for="projectColor">Color</label>
+            <input type="color" name="projectColor" id="projectColor" />
+          </div>
+        </form>
+        <button class="createProjectButton">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="createProjectIcon"
+          >
+            <path
+              d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+            ></path>
+            <line x1="12" y1="11" x2="12" y2="17"></line>
+            <line x1="9" y1="14" x2="15" y2="14"></line>
+          </svg>
+        </button>
       </div>
+    </dialog>
+    <aside>
+      <header>
+        <div class="logo">
+          <h1>DoIts</h1>
+        </div>
+      </header>
+      <div class="filters">
+        <div class="filter sortToday">
+          <p>Today</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="sortIcon"
+          >
+            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+            <path d="M13 13l6 6"></path>
+          </svg>
+        </div>
+        <div class="filter sortWeek">
+          <p>Week</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="sortIcon"
+          >
+            <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path>
+            <path d="M13 13l6 6"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="projects"></div>
     </aside>
-    <main>
-       
-    </main>
+    <main></main>
   </body>
 </html>
