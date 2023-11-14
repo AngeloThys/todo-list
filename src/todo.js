@@ -65,9 +65,9 @@ function getDueDate() {
 
 function setPriority(newPriority) {
   switch (newPriority) {
-    case 1:
-    case 2:
-    case 3:
+    case "1":
+    case "2":
+    case "3":
       return (this._priority = newPriority);
     default:
       return false;

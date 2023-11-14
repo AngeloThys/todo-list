@@ -153,14 +153,14 @@ function cyclePriority(todo) {
   const currentPriority = todo.getPriority();
 
   switch (currentPriority) {
-    case 1:
-      updateTodoPriority(2, todo);
+    case "1":
+      updateTodoPriority("2", todo);
       break;
-    case 2:
-      updateTodoPriority(3, todo);
+    case "2":
+      updateTodoPriority("3", todo);
       break;
-    case 3:
-      updateTodoPriority(1, todo);
+    case "3":
+      updateTodoPriority("1", todo);
       break;
   }
 }
@@ -175,14 +175,14 @@ export function createPriorityIcon(todo) {
   const currentPriority = todo.getPriority();
 
   switch (currentPriority) {
-    case 1:
-      priorityIcon.src = url('./src/images/priority1.svg');
+    case "1":
+      priorityIcon.src = '../images/priority1.svg';
       break;
-    case 2:
-      priorityIcon.src = url('./src/images/priority2.svg');
+    case "2":
+      priorityIcon.src = '../images/priority2.svg';
       break;
-    case 3:
-      priorityIcon.src = url('./src/images/priority3.svg');
+    case "3":
+      priorityIcon.src = '../images/priority3.svg';
       break;
   }
 
