@@ -20,7 +20,7 @@ function getId() {
 }
 
 function setProjectId(newProjectId) {
-  if (Number.isInteger(newProjectId)) {
+  if (newProjectId) {
     return (this._projectId = newProjectId);
   }
 
