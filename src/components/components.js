@@ -108,7 +108,7 @@ export function createDeleteButton(project, todo) {
   const deleteButton = document.createElement('button');
   const deleteIcon = document.createElement('img');
 
-  deleteIcon.src = url('../images/delete.svg');
+  deleteIcon.src = '../images/delete.svg';
 
   deleteButton.className = 'deleteTodo';
   deleteButton.appendChild(deleteIcon);
@@ -125,7 +125,7 @@ export function createExpandButton() {
   const expandIcon = document.createElement('img');
   const modifyTodoDialog = document.querySelector('.modifyTodo');
 
-  expandIcon.src = url('../images/maximize.svg');
+  expandIcon.src = '../images/maximize.svg';
 
   expandButton.className = 'openTodo';
   expandButton.appendChild(expandIcon);
@@ -138,7 +138,7 @@ export function createExpandButton() {
 
 export function createPriorityButton(todo) {
   const priorityButton = document.createElement('button');
-
+  
   priorityButton.className = 'changePriority';
   priorityButton.appendChild(createPriorityIcon(todo));
   priorityButton.addEventListener('click', () => {
