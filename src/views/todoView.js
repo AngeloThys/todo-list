@@ -1,4 +1,3 @@
-import * as storage from '../storage.js';
 import * as filters from '../filters.js';
 import * as components from '../components/components.js';
 
@@ -9,7 +8,7 @@ export default function setTodoView(project) {
   const addTodoButton = components.createAddTodoButton();
 
   todoView.className = 'todoView';
-  todoView.replaceChildren(todoElementList);
+  todoView.replaceChildren(...todoElementList);
   todoView.appendChild(addTodoButton);
 
   main.replaceChildren(todoView);
@@ -17,10 +16,10 @@ export default function setTodoView(project) {
 
 function createTodoElementList(project) {
   const todos = filters.getProjectTodos(project.getId());
-  let todoElementList;
+  let todoElementList = [];
 
   todos.forEach((todo) => {
-    todoElementList.push(createTodoElement(todo));
+    todoElementList.push(createTodoElement(project, todo));
   });
 
   return todoElementList;
