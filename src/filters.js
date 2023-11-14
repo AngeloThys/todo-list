@@ -6,5 +6,5 @@ import * as storage from './storage';
 export function getProjectTodos(projectId) {
   const todos = storage.getTodosValue();
 
-  return todos.filter((todo) => todo.getProjectId() === projectId);
+  return todos.filter((todo) => parseInt(todo.getProjectId()) === parseInt(projectId));
 }
