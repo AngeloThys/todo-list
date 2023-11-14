@@ -8,12 +8,14 @@ export function setView(project) {
 
   removeActiveClass();
   setActiveClass(project);
-
+  
   if (todoList.length === 0) {
     setEmptyView();
   } else {
     setTodoView(project);
   }
+  
+  setAddTodoProjectId(project);
 }
 
 export function setDefaultView() {
@@ -24,6 +26,13 @@ export function setDefaultView() {
   );
 
   setView(defaultProject);
+}
+
+function setAddTodoProjectId(project) {
+  const projectId = project.getId();
+  const addTodoButton = document.querySelector('.addTodo');
+
+  addTodoButton.setAttribute('data-project', projectId);
 }
 
 function setActiveClass(project) {
