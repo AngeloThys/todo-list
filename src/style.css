@@ -247,6 +247,7 @@ main {
 /* Dialogs - createTodo */
 
 .createTodo {
+  display: grid;
   position: absolute;
   top: 20%;
   padding: 1rem;
@@ -335,10 +336,52 @@ main {
 .todoPriorityContainer {
   grid-area: prio;
   place-self: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .todoPriorityContainer label {
   font-size: 1.2rem;
+}
+
+.cyclePriorityButton {
+  border: 2px solid transparent;
+  background: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  position: relative;
+}
+
+.cyclePriorityButton:hover::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  border: 2px solid var(--primary-gold);
+  border-radius: 25%;
+  width: 2rem;
+  height: 2rem;
+  transform: rotate(15deg);
+}
+
+.cyclePriorityButton:hover::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  border: 2px solid var(--primary-gold);
+  border-radius: 25%;
+  width: 2rem;
+  height: 2rem;
+  transform: rotate(-15deg);
+}
+
+.cyclePriorityButton img {
+  width: 2rem;
+  height: auto;
 }
 
 .todoStatusContainer {
