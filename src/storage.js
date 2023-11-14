@@ -68,7 +68,7 @@ export function createProject() {
 export function getProject(projectId) {
   const projects = getProjectsValue();
 
-  return projects.find((project) => project.getId() === projectId);
+  return projects.find((project) => project.getId() === parseInt(projectId));
 }
 
 export function deleteProject(project) {
@@ -130,7 +130,7 @@ function setTodosValue(todosArray) {
 
 // Todo object functions
 
-export function createTodo(projectId = 0) {
+export function createTodo(projectId) {
   const todo = todoFactory();
   const todos = getTodosValue();
 
