@@ -247,7 +247,6 @@ main {
 /* Dialogs - createTodo */
 
 .createTodo {
-  display: grid;
   position: absolute;
   top: 20%;
   padding: 1rem;
