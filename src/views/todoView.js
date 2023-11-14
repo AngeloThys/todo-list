@@ -8,7 +8,7 @@ export default function setTodoView(project) {
   const addTodoButton = components.createAddTodoButton();
 
   todoView.className = 'todoView';
-  todoView.replaceChildren(...todoElementList);
+  todoView.replaceChildren(todoElementList);
   todoView.appendChild(addTodoButton);
 
   main.replaceChildren(todoView);
@@ -16,13 +16,14 @@ export default function setTodoView(project) {
 
 function createTodoElementList(project) {
   const todos = filters.getProjectTodos(project.getId());
-  let todoElementList = [];
+  const todoElementContainer = document.createElement('div');
 
+  todoElementContainer.className = 'todoContainerList';
   todos.forEach((todo) => {
-    todoElementList.push(createTodoElement(project, todo));
+    todoElementContainer.appendChild(createTodoElement(project, todo));
   });
 
-  return todoElementList;
+  return todoElementContainer;
 }
 
 function createTodoElement(project, todo) {
