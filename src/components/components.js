@@ -1,3 +1,5 @@
+import * as storage from '../storage';
+
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
   const createTodoDialog = document.querySelector('.createTodo');
@@ -139,7 +141,7 @@ export function createExpandButton() {
 export function createPriorityButton(todo) {
   const priorityButton = document.createElement('button');
   
-  priorityButton.className = 'changePriority';
+  priorityButton.className = 'cyclePriorityButton';
   priorityButton.appendChild(createPriorityIcon(todo));
   priorityButton.addEventListener('click', () => {
     cyclePriority(todo);

@@ -352,28 +352,30 @@ main {
   position: relative;
 }
 
-.cyclePriorityButton:hover::before {
+.cyclePriorityButton::before,
+.cyclePriorityButton::after {
   position: absolute;
   top: 0;
   left: 0;
   content: '';
-  border: 2px solid var(--primary-gold);
+  border: 2px solid transparent;
   border-radius: 25%;
   width: 2rem;
   height: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.cyclePriorityButton::before {
   transform: rotate(15deg);
 }
 
-.cyclePriorityButton:hover::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-  border: 2px solid var(--primary-gold);
-  border-radius: 25%;
-  width: 2rem;
-  height: 2rem;
+.cyclePriorityButton::after {
   transform: rotate(-15deg);
+}
+
+.cyclePriorityButton:hover::before,
+.cyclePriorityButton:hover::after {
+  border: 2px solid var(--primary-gold);
 }
 
 .cyclePriorityButton img {
@@ -484,8 +486,7 @@ main {
 
 .todoView {
   display: grid;
-  grid-template-areas:
-    "todos addtodo";
+  grid-template-areas: 'todos addtodo';
   grid-template-columns: 9fr 1fr;
 }
 
@@ -504,12 +505,73 @@ main {
   border-radius: 4px;
   box-shadow: 0px 0px 4px var(--secondary-dark);
   padding: 1rem;
+  display: grid;
+  grid:
+    'pri . exp del' 1fr
+    'tit tit tit tit' 1fr
+    'des des des des' 1fr
+    'due due due sta' 1fr
+    / 1fr 1fr 1fr 1fr;
 }
 
-.changePriority {
-  
+.todoContainer .cyclePriorityButton {
+  grid-area: pri;
+  place-self: center;
 }
 
+.todoContainer .openTodo {
+  grid-area: exp;
+  place-self: center;
+  background: 0;
+  border: 0;
+  padding: 0;
+  display: grid;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.todoContainer .openTodo:hover {
+  transform: scale(.9);
+}
+
+.todoContainer .openTodo:active {
+  transform: scale(.8);
+}
+
+.todoContainer .deleteTodo {
+  grid-area: del;
+  place-self: center;
+  background: 0;
+  border: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.todoContainer .deleteTodo:hover {
+  transform: scale(.9);
+}
+
+.todoContainer .deleteTodo:active {
+  transform: scale(.8);
+}
+
+.todoContainer .updateTitle {
+  grid-area: tit;
+}
+
+.todoContainer .descriptionTodo {
+  grid-area: des;
+}
+
+.todoContainer .updateDueDate {
+  grid-area: due;
+}
+
+.todoContainer .updateStatus {
+ grid-area: sta; 
+}
 
 .todoView .addTodo {
   grid-area: addtodo;
