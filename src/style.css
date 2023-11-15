@@ -39,6 +39,7 @@ aside {
   background-color: var(--primary-dark);
   border-right: 4px solid var(--secondary-dark);
   box-shadow: 2px 0 4px var(--secondary-dark);
+  max-height: 100vh;
 }
 
 aside * {
@@ -488,13 +489,34 @@ main {
   display: grid;
   grid-template-areas: 'todos addtodo';
   grid-template-columns: 9fr 1fr;
+  height: 100vh;
 }
 
 .todoContainerList {
   grid-area: todos;
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin: 2rem;
+  overflow-y: scroll;
+}
+
+.todoContainerList::-webkit-scrollbar {
+  width: 20px;
+  background-color: var(--tertiary-dark);
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px var(--tertiary-dark);
+}
+
+.todoContainerList::-webkit-scrollbar-thumb {
+  background-color: var(--primary-dark);
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.todoContainerList::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-dark);
 }
 
 .todoContainer {
