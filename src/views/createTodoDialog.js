@@ -1,5 +1,5 @@
 import * as storage from '../storage';
-import { parseISO } from 'date-fns';
+import { parse } from 'date-fns';
 import * as main from '../components/main';
 
 export function createTodo() {
@@ -16,13 +16,11 @@ export function createTodo() {
     const todoDescription = document.querySelector('#todoDescription').value;
     const todoDueDate = document.querySelector('#todoDueDate').value;
     const todoPriority = document.querySelector('.cyclePriorityButton').dataset.priority;
-    const todoStatus = document.querySelector('#todoStatus').checked;
-
-    const parsedTodoDueDate = parseISO(todoDueDate);
+    const todoStatus = document.querySelector('.todoStatus').checked;
 
     todo.setTitle(todoTitle);
     todo.setDescription(todoDescription);
-    todo.setDueDate(parsedTodoDueDate);
+    todo.setDueDate(todoDueDate);
     todo.setPriority(todoPriority);
     todo.setStatus(todoStatus);
 

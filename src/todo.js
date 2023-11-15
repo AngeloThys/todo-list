@@ -4,7 +4,7 @@ import { idGenerator } from './helpers';
 const todoIdGenerator = idGenerator();
 
 export function todoFactory() {
-  let _id = todoIdGenerator("todoId");
+  let _id = todoIdGenerator('todoId');
 
   return Object.assign(
     {
@@ -52,11 +52,7 @@ function getDescription() {
 }
 
 function setDueDate(newDueDate) {
-  if (isDate(newDueDate)) {
-    return (this._date = newDueDate);
-  }
-
-  return false;
+  return (this._dueDate = newDueDate);
 }
 
 function getDueDate() {
@@ -65,9 +61,9 @@ function getDueDate() {
 
 function setPriority(newPriority) {
   switch (newPriority) {
-    case "1":
-    case "2":
-    case "3":
+    case '1':
+    case '2':
+    case '3':
       return (this._priority = newPriority);
     default:
       return false;
@@ -79,7 +75,7 @@ function getPriority() {
 }
 
 function setStatus(newStatus) {
-  if (newStatus instanceof Boolean) {
+  if (typeof newStatus === 'boolean') {
     return (this._status = newStatus);
   }
 

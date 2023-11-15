@@ -1,4 +1,6 @@
 import * as storage from '../storage';
+import setTodoView from '../views/todoView';
+import { parse, format } from 'date-fns';
 
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
@@ -23,7 +25,7 @@ function createAddTodoLogo() {
   return addTodoLogo;
 }
 
-export function createTodoContainer(todo) {
+export function createTodoContainer() {
   const todoContainer = document.createElement('div');
 
   todoContainer.className = 'todoContainer';
@@ -32,28 +34,35 @@ export function createTodoContainer(todo) {
 }
 
 export function createStatusInput(todo) {
+  const statusLabel = document.createElement('label');
   const statusInput = document.createElement('input');
+  const statusSpan = document.createElement('span');
   const todoStatus = todo.getStatus();
 
+  statusLabel.className = 'todoStatusContainer';
+  statusInput.className = 'todoStatus';
   statusInput.type = 'checkbox';
-  statusInput.className = 'updateStatus';
   statusInput.checked = todoStatus;
-  statusInput.addEventListener('change', () => {
-    updateTodoStatus();
+  statusSpan.className = 'checkmark';
+
+  statusLabel.replaceChildren(statusInput, statusSpan);
+
+  statusLabel.addEventListener('change', () => {
+    const updatedTodoStatus = statusInput.checked;
+    updateTodoStatus(updatedTodoStatus, todo);
   });
 
-  return statusInput;
+  return statusLabel;
 }
 
 function updateTodoStatus(status, todo) {
   todo.setStatus(status);
-  storage.updateTodo(todo);
+  storage.updateTodo(todo); // check for the issue here.
 }
 
 export function createDueDateInput(todo) {
   const dueDateInput = document.createElement('input');
   const todoDueDate = todo.getDueDate();
-
   dueDateInput.type = 'date';
   dueDateInput.className = 'updateDueDate';
   dueDateInput.value = todoDueDate;

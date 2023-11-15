@@ -73,7 +73,8 @@ export function getProject(projectId) {
 
 export function deleteProject(project) {
   const projects = getProjectsValue();
-  const projectToBeDeleted = getProject(project.getId());
+  const projectToBeDeletedId = project.getId();
+  const projectToBeDeleted = projects.find((project) => project.getId() === parseInt(projectToBeDeletedId));
   const index = projects.indexOf(projectToBeDeleted);
 
   projects.splice(index, 1);
@@ -149,9 +150,9 @@ export function getTodo(todoId) {
 
 export function deleteTodo(todo) {
   const todos = getTodosValue();
-  const todoToBeDeleted = getTodo(todo.getId());
+  const todoToBeDeletedId = todo.getId();
+  const todoToBeDeleted = todos.find((todo) => todo.getId() === todoToBeDeletedId);
   const index = todos.indexOf(todoToBeDeleted);
-
   todos.splice(index, 1);
   setTodosValue(todos);
 
