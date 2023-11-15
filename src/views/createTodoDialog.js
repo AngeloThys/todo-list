@@ -1,5 +1,4 @@
 import * as storage from '../storage';
-import { parse } from 'date-fns';
 import * as main from '../components/main';
 
 export function createTodo() {
@@ -95,7 +94,7 @@ function getCurrentPriority() {
   const cyclePriorityButton = document.querySelector('.cyclePriorityButton');
   let currentPriority;
 
-  if (cyclePriorityButton) {
+  if (cyclePriorityButton.dataset.priority) {
     currentPriority = cyclePriorityButton.dataset.priority;
   } else {
     currentPriority = '1';
