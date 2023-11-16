@@ -36,7 +36,7 @@ export function createFilterTodoElementList(filter) {
   if (filter === 'today') {
     todos = filters.getTodayOrBeforeTodos();
   } else if (filter === 'week') {
-    // todos = filters.getWeekTodos();
+    todos = filters.getWeekTodos();
   }
 
   todoElementContainer.className = 'todoContainerList';

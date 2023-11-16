@@ -1,5 +1,5 @@
 import * as storage from './storage';
-import { format, isToday, isBefore, parseISO, parse } from 'date-fns';
+import { isToday, isBefore, parseISO, isThisWeek } from 'date-fns';
 
 // Todo lists based on certain criteria
 
@@ -12,7 +12,6 @@ export function getProjectTodos(projectId) {
   );
 }
 
-// Retrieve todos that belong to today
 export function getTodayOrBeforeTodos() {
   const todos = storage.getTodosValue();
 
@@ -24,4 +23,12 @@ export function getTodayOrBeforeTodos() {
   });
 }
 
-// Retrieve todos that belong to this week
+export function getWeekTodos() {
+  const todos = storage.getTodosValue();
+
+  return todos.filter((todo) => {
+    const todoDate = parseISO(todo.getDueDate());
+
+    return isThisWeek(todoDate);
+  });
+}
