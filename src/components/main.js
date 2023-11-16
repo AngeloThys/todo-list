@@ -1,9 +1,9 @@
 import setEmptyView from '../views/emptyView';
-import setTodoView from '../views/todoView';
+import setprojectTodoView from '../views/projectTodoView';
 import * as filters from '../filters';
 import * as storage from '../storage';
 
-export function setView(project) {
+export function setProjectView(project) {
   const todoList = filters.getProjectTodos(project.getId());
 
   removeActiveClass();
@@ -12,7 +12,7 @@ export function setView(project) {
   if (todoList.length === 0) {
     setEmptyView();
   } else {
-    setTodoView(project);
+    setprojectTodoView(project);
   }
   
   setAddTodoProjectId(project);
@@ -25,7 +25,7 @@ export function setDefaultView() {
     (project) => project.getId() === defaultProjectId
   );
 
-  setView(defaultProject);
+  setProjectView(defaultProject);
 }
 
 function setAddTodoProjectId(project) {

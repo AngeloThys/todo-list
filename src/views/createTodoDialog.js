@@ -26,7 +26,7 @@ export function createTodo() {
 
     storage.updateTodo(todo);
     todoForm.reset();
-    main.setView(project);
+    main.setProjectView(project);
     createTodo.close();
   });
 }

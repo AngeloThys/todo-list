@@ -1,5 +1,14 @@
 import * as storage from '../storage';
-import { setView } from './main';
+import { setProjectView } from './main';
+import setTodayTodoView from '../views/todayTodoView';
+
+export function setTodayEventListener() {
+  const todayFilterButton = document.querySelector('.sortToday');
+
+  todayFilterButton.addEventListener('click', () => {
+    setTodayTodoView();
+  });
+}
 
 export function setProjectContainerContent() {
   const projectsContainer = document.querySelector('.projects');
@@ -43,7 +52,7 @@ function createProjectButton(project) {
   projectButton.setAttribute('data-project-id', project.getId());
   projectButton.replaceChildren(projectButtonP, projectButtonLogo);
   projectButton.addEventListener('click', () => {
-    setView(project);
+    setProjectView(project);
   });
   projectButton.addEventListener('mouseenter', () => {
     projectButtonP.classList.add('hover');

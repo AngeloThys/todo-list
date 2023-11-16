@@ -1,4 +1,5 @@
-import { setView } from './main';
+import { setProjectView } from './main';
+import setTodayTodoView from '../views/todayTodoView';
 import * as storage from '../storage';
 
 export function addCloseDialogListener() {
@@ -9,7 +10,15 @@ export function addCloseDialogListener() {
   dialogList.forEach((dialog) => {
     dialog.addEventListener('click', (e) => {
       if (e.target.localName === 'dialog') {
-        setView(project);
+        const view =
+          document.querySelector('.todoContainerList').parentNode.className;
+
+        if (view === 'projectTodoView') {
+          setProjectView(project);
+        } else if (view === 'todayTodoView') {
+          setTodayTodoView();
+        }
+
         dialog.close();
       }
     });

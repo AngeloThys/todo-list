@@ -1,5 +1,5 @@
 import * as storage from '../storage';
-import setTodoView from '../views/todoView';
+import setprojectTodoView from '../views/projectTodoView';
 import { populateModifyTodoDialog } from '../views/modifyTodoDialog';
 
 export function createAddTodoButton() {
@@ -126,7 +126,7 @@ export function createDeleteButton(project, todo) {
   deleteButton.appendChild(deleteIcon);
   deleteButton.addEventListener('click', () => {
     storage.deleteTodo(todo);
-    setTodoView(project);
+    setprojectTodoView(project);
   });
 
   return deleteButton;

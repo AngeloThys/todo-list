@@ -18,7 +18,7 @@ export function createProject() {
     storage.updateProject(project);
     projectForm.reset();
     sidebar.setProjectContainerContent();
-    main.setView(project);
+    main.setProjectView(project);
     createProject.close();
   });
 }

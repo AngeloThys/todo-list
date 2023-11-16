@@ -566,9 +566,9 @@ main {
   margin: 0;
 }
 
-/* Views - todoView */
+/* Views - projectTodoView */
 
-.todoView {
+.projectTodoView {
   display: grid;
   grid-template-areas: 'todos addtodo';
   grid-template-columns: 9fr 1fr;
@@ -708,7 +708,7 @@ main {
   top: 10px;
 }
 
-.todoView .addTodo {
+.projectTodoView .addTodo {
   grid-area: addtodo;
   place-self: end;
   margin-bottom: 2rem;
