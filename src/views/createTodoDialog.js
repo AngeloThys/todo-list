@@ -3,7 +3,7 @@ import * as main from '../components/main';
 
 export function createTodo() {
   const createTodoButton = document.querySelector('.createTodoButton');
-  
+
   createTodoButton.addEventListener('click', (event) => {
     event.preventDefault();
     const projectId = document.querySelector('.addTodo').dataset.project;
@@ -14,7 +14,8 @@ export function createTodo() {
     const todoTitle = document.querySelector('#todoTitle').value;
     const todoDescription = document.querySelector('#todoDescription').value;
     const todoDueDate = document.querySelector('#todoDueDate').value;
-    const todoPriority = document.querySelector('.cyclePriorityButton').dataset.priority;
+    const todoPriority = document.querySelector('.cyclePriorityButton').dataset
+      .priority;
     const todoStatus = document.querySelector('.todoStatus').checked;
 
     todo.setTitle(todoTitle);
@@ -60,13 +61,13 @@ function cyclePriority() {
 
   switch (currentPriority) {
     case '1':
-      cyclePriorityButton.setAttribute('data-priority', "2");
+      cyclePriorityButton.setAttribute('data-priority', '2');
       break;
     case '2':
-      cyclePriorityButton.setAttribute('data-priority', "3");
+      cyclePriorityButton.setAttribute('data-priority', '3');
       break;
     case '3':
-      cyclePriorityButton.setAttribute('data-priority', "1");
+      cyclePriorityButton.setAttribute('data-priority', '1');
       break;
   }
 }
@@ -94,7 +95,10 @@ function getCurrentPriority() {
   const cyclePriorityButton = document.querySelector('.cyclePriorityButton');
   let currentPriority;
 
-  if (cyclePriorityButton.dataset.priority) {
+  if (
+    cyclePriorityButton?.dataset?.priority !== null &&
+    cyclePriorityButton?.dataset?.priority !== undefined
+  ) {
     currentPriority = cyclePriorityButton.dataset.priority;
   } else {
     currentPriority = '1';
