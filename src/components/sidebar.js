@@ -2,12 +2,15 @@ import * as storage from '../storage';
 import { setProjectView } from './main';
 import setTodayTodoView from '../views/todayTodoView';
 import setWeekTodoView from '../views/weekTodoView';
+import { setActiveClass, removeActiveClass } from '../helpers';
 
 export function setWeekEventListener() {
   const weekFilterButton = document.querySelector('.sortWeek');
 
   weekFilterButton.addEventListener('click', () => {
+    removeActiveClass();
     setWeekTodoView();
+    setActiveClass();
   })
 }
 
@@ -15,7 +18,9 @@ export function setTodayEventListener() {
   const todayFilterButton = document.querySelector('.sortToday');
 
   todayFilterButton.addEventListener('click', () => {
+    removeActiveClass();
     setTodayTodoView();
+    setActiveClass();
   });
 }
 

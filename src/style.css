@@ -144,6 +144,11 @@ header {
   border: 2px solid var(--primary-gold);
 }
 
+.filter.active::after,
+.filter.active::before {
+  border: 2px solid white;
+}
+
 .sortIcon {
   height: 1.2rem;
   width: 1.2rem;

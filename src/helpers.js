@@ -41,7 +41,7 @@ export function createFilterTodoElementList(filter) {
 
   todoElementContainer.className = 'todoContainerList';
   todos.forEach((todo) => {
-    const project = storage.getProject(todo.getProjectId()); 
+    const project = storage.getProject(todo.getProjectId());
     todoElementContainer.appendChild(createTodoElement(project, todo));
   });
 
@@ -81,4 +81,29 @@ function createTodoElement(project, todo) {
   );
 
   return todoContainer;
+}
+
+export function setActiveClass() {
+  const filterButtonList = document.querySelectorAll('.filter');
+
+  filterButtonList.forEach((filterButton) => {
+    const view = document.querySelector('main').childNodes[0].className;
+    const buttonClass = filterButton.classList[1]
+    if (view === 'todayTodoView' && buttonClass === 'sortToday') {
+      filterButton.classList.add('active');
+      filterButton.classList.add('active');
+    } else if (view === 'weekTodoView' && buttonClass === 'sortWeek') {
+      filterButton.classList.add('active');
+      filterButton.classList.add('active');
+    }
+  });
+}
+
+export function removeActiveClass() {
+  const filterButtonList = document.querySelectorAll('.filter');
+
+  filterButtonList.forEach((filterButton) => {
+    filterButton.classList.remove('active');
+    filterButton.classList.remove('active');
+  });
 }
