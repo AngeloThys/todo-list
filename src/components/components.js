@@ -1,6 +1,7 @@
 import * as storage from '../storage';
 import setprojectTodoView from '../views/projectTodoView';
 import { populateModifyTodoDialog } from '../views/modifyTodoDialog';
+import { parseISO, isPast } from 'date-fns';
 
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
@@ -63,12 +64,30 @@ function updateTodoStatus(status, todo) {
 export function createDueDateInput(todo) {
   const dueDateInput = document.createElement('input');
   const todoDueDate = todo.getDueDate();
+  const parsedTodoDueDate = parseISO(todoDueDate);
+
   dueDateInput.type = 'date';
   dueDateInput.className = 'updateDueDate';
   dueDateInput.value = todoDueDate;
+
+  if (isPast(parsedTodoDueDate)) {
+    dueDateInput.style.backgroundColor = 'darksalmon';
+  } else {
+    dueDateInput.style.backgroundColor = '#eee';
+  }
+
   dueDateInput.addEventListener('change', () => {
     let date = dueDateInput.value;
+    
     updateTodoDueDate(date, todo);
+
+    let parsedTodoDueDate = parseISO(todo.getDueDate());
+
+    if (isPast(parsedTodoDueDate)) {
+      dueDateInput.style.backgroundColor = 'darksalmon';
+    } else {
+      dueDateInput.style.backgroundColor = '#eee';
+    }
   });
 
   return dueDateInput;
