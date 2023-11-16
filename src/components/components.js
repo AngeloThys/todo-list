@@ -1,6 +1,6 @@
 import * as storage from '../storage';
 import setTodoView from '../views/todoView';
-import { parse, format } from 'date-fns';
+import { populateModifyTodoDialog } from '../views/modifyTodoDialog';
 
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
@@ -87,6 +87,7 @@ export function createDescriptionP(todo) {
   descriptionP.textContent = todo.getDescription();
   descriptionP.addEventListener('click', () => {
     modifyTodoDialog.showModal();
+    populateModifyTodoDialog(todo);
   });
 
   return descriptionP;

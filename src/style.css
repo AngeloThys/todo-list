@@ -466,6 +466,89 @@ main {
   transform: scale(0.85);
 }
 
+/* Dialogs - modifyTodo */
+
+.modifyTodo {
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+}
+
+.modifyTodoContainer {
+  display: grid;
+  position: relative;
+  padding: 1rem;
+  border: 4px solid var(--secondary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+  grid:
+    "titl prio stat  .    dele" 1fr
+    "desc desc desc  .     ." 3fr
+    "desc desc desc dueD  dueD" 1fr
+    / 3fr 1fr  1fr  1fr   1fr;
+  gap: 2rem;
+}
+
+.modifyTodoContainer .cyclePriorityButton {
+  grid-area: prio;
+  place-self: center;
+  display: grid;
+}
+
+.modifyTodoContainer .cyclePriorityButton img {
+  width: 36px;
+  height: 36px;
+}
+
+.modifyTodoContainer .deleteTodo {
+  grid-area: dele;
+  place-self: center;
+  border: 0;
+  background: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.modifyTodoContainer .deleteTodo:hover {
+  transform: scale(0.95);
+}
+
+.modifyTodoContainer .deleteTodo:active {
+  transform: scale(0.85);
+}
+
+.modifyTodoContainer .deleteTodo img {
+  width: 36px;
+  height: 36px;
+}
+
+.modifyTodoContainer .updateTitle {
+  grid-area: titl;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .updateDescription {
+  grid-area: desc;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .updateDueDate {
+  grid-area: dueD;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .todoStatusContainer {
+  grid-area: stat;
+  position: absolute;
+  top: 0;
+  left: 6px;
+}
+
 /* Views - EmptyView */
 
 .emptyView {
