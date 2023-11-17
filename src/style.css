@@ -804,6 +804,14 @@ main {
     brightness(105%) contrast(106%);
 }
 
+.colorLogo {
+  height: 14px;
+  width: 14px;
+  border: 2px solid var(--secondary-dark);
+  transform: rotate(45deg);
+  box-shadow: 0px 0px 4px var(--secondary-dark);
+}
+
 /* Components - Sidebar - addProjectButton */
 .addProject {
   display: grid;

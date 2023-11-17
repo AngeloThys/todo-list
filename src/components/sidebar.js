@@ -59,12 +59,13 @@ function createProjectButtonList() {
 
 function createProjectButton(project) {
   const projectButton = document.createElement('button');
+  const projectColorLogo = createProjectColorLogo(project);
   const projectButtonP = createProjectButtonP(project);
   const projectButtonLogo = createProjectButtonLogo();
 
   projectButton.className = 'project';
   projectButton.setAttribute('data-project-id', project.getId());
-  projectButton.replaceChildren(projectButtonP, projectButtonLogo);
+  projectButton.replaceChildren(projectColorLogo, projectButtonP, projectButtonLogo);
   projectButton.addEventListener('click', () => {
     setProjectView(project);
   });
@@ -96,6 +97,22 @@ function createProjectButtonLogo() {
   projectButtonLogo.src = '../images/arrow-right.svg';
 
   return projectButtonLogo;
+}
+
+function createProjectColorLogo(project) {
+  const projectColorLogo = document.createElement('span');
+  const projectColor = setProjectColor(project);
+
+  projectColorLogo.className = 'colorLogo';
+  projectColorLogo.style.backgroundColor = projectColor;
+
+  return projectColorLogo;
+}
+
+function setProjectColor(project) {
+  const projectColor = project.getHexColor();
+
+  return projectColor;
 }
 
 function createAddProjectButton() {
