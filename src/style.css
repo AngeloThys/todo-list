@@ -113,6 +113,7 @@ header {
   gap: 1rem;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: all .1s ease-in-out;
 }
 
 .filter::before {
@@ -136,7 +137,6 @@ header {
   width: 115%;
   border-radius: 50%;
   transform: rotate(20deg);
-  transition: all ease-in-out;
 }
 
 .filter:hover::after,

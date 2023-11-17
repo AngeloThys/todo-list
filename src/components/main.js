@@ -2,10 +2,12 @@ import setEmptyView from '../views/emptyView';
 import { setProjectTodoView } from '../views/projectTodoView';
 import * as filters from '../filters';
 import * as storage from '../storage';
+import * as helpers from '../helpers';
 
 export function setProjectView(project) {
   const todoList = filters.getProjectTodos(project.getId());
 
+  helpers.removeActiveClass();
   removeActiveClass();
   setActiveClass(project);
 
@@ -46,7 +48,7 @@ function setActiveClass(project) {
   });
 }
 
-function removeActiveClass() {
+export function removeActiveClass() {
   const projectButtonPList = document.querySelectorAll('.projectName');
   const projectButtonLogoList = document.querySelectorAll('.projectLogo');
 

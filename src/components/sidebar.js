@@ -1,5 +1,5 @@
 import * as storage from '../storage';
-import { setProjectView } from './main';
+import * as main from './main';
 import setTodayTodoView from '../views/todayTodoView';
 import setWeekTodoView from '../views/weekTodoView';
 import { setActiveClass, removeActiveClass } from '../helpers';
@@ -8,6 +8,7 @@ export function setWeekEventListener() {
   const weekFilterButton = document.querySelector('.sortWeek');
 
   weekFilterButton.addEventListener('click', () => {
+    main.removeActiveClass();
     removeActiveClass();
     setWeekTodoView();
     setActiveClass();
@@ -18,6 +19,7 @@ export function setTodayEventListener() {
   const todayFilterButton = document.querySelector('.sortToday');
 
   todayFilterButton.addEventListener('click', () => {
+    main.removeActiveClass();
     removeActiveClass();
     setTodayTodoView();
     setActiveClass();
@@ -67,7 +69,7 @@ function createProjectButton(project) {
   projectButton.setAttribute('data-project-id', project.getId());
   projectButton.replaceChildren(projectColorLogo, projectButtonP, projectButtonLogo);
   projectButton.addEventListener('click', () => {
-    setProjectView(project);
+    main.setProjectView(project);
   });
   projectButton.addEventListener('mouseenter', () => {
     projectButtonP.classList.add('hover');
