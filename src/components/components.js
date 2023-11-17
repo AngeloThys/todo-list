@@ -1,7 +1,9 @@
 import * as storage from '../storage';
-import setprojectTodoView from '../views/projectTodoView';
+import { setProjectView } from './main';
 import { populateModifyTodoDialog } from '../views/modifyTodoDialog';
 import { parseISO, isPast } from 'date-fns';
+import setTodayTodoView from '../views/todayTodoView';
+import setWeekTodoView from '../views/weekTodoView';
 
 export function createAddTodoButton() {
   const addTodoButton = document.createElement('button');
@@ -78,7 +80,7 @@ export function createDueDateInput(todo) {
 
   dueDateInput.addEventListener('change', () => {
     let date = dueDateInput.value;
-    
+
     updateTodoDueDate(date, todo);
 
     let parsedTodoDueDate = parseISO(todo.getDueDate());
@@ -144,8 +146,21 @@ export function createDeleteButton(project, todo) {
   deleteButton.className = 'deleteTodo';
   deleteButton.appendChild(deleteIcon);
   deleteButton.addEventListener('click', () => {
+    const view = document.querySelector('main').childNodes[0].className;
+
     storage.deleteTodo(todo);
-    setprojectTodoView(project);
+
+    switch (view) {
+      case 'projectTodoView':
+        setProjectView(project);
+        break;
+      case 'todayTodoView':
+        setTodayTodoView()
+        break;
+      case 'weekTodoView':
+        setWeekTodoView()
+        break;
+    }
   });
 
   return deleteButton;
@@ -169,7 +184,7 @@ export function createExpandButton() {
 
 export function createPriorityButton(todo) {
   const priorityButton = document.createElement('button');
-  
+
   priorityButton.className = 'cyclePriorityButton';
   priorityButton.appendChild(createPriorityIcon(todo));
   priorityButton.addEventListener('click', () => {
@@ -184,14 +199,14 @@ function cyclePriority(todo) {
   const currentPriority = todo.getPriority();
 
   switch (currentPriority) {
-    case "1":
-      updateTodoPriority("2", todo);
+    case '1':
+      updateTodoPriority('2', todo);
       break;
-    case "2":
-      updateTodoPriority("3", todo);
+    case '2':
+      updateTodoPriority('3', todo);
       break;
-    case "3":
-      updateTodoPriority("1", todo);
+    case '3':
+      updateTodoPriority('1', todo);
       break;
   }
 }
@@ -206,13 +221,13 @@ export function createPriorityIcon(todo) {
   const currentPriority = todo.getPriority();
 
   switch (currentPriority) {
-    case "1":
+    case '1':
       priorityIcon.src = '../images/priority1.svg';
       break;
-    case "2":
+    case '2':
       priorityIcon.src = '../images/priority2.svg';
       break;
-    case "3":
+    case '3':
       priorityIcon.src = '../images/priority3.svg';
       break;
   }

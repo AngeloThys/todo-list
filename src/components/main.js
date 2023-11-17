@@ -1,5 +1,5 @@
 import setEmptyView from '../views/emptyView';
-import setprojectTodoView from '../views/projectTodoView';
+import { setProjectTodoView } from '../views/projectTodoView';
 import * as filters from '../filters';
 import * as storage from '../storage';
 
@@ -8,13 +8,13 @@ export function setProjectView(project) {
 
   removeActiveClass();
   setActiveClass(project);
-  
+
   if (todoList.length === 0) {
-    setEmptyView();
+    setEmptyView(project);
   } else {
-    setprojectTodoView(project);
+    setProjectTodoView(project);
   }
-  
+
   setAddTodoProjectId(project);
 }
 

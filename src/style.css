@@ -487,10 +487,10 @@ main {
   border-radius: 4px;
   background-color: var(--tertiary-dark);
   grid:
-    "titl prio stat  .    dele" 1fr
-    "desc desc desc  .     ." 3fr
-    "desc desc desc dueD  dueD" 1fr
-    / 3fr 1fr  1fr  1fr   1fr;
+    'titl prio stat  .    dele' 1fr
+    'desc desc desc  .     .' 3fr
+    'desc desc desc dueD  dueD' 1fr
+    / 3fr 1fr 1fr 1fr 1fr;
   gap: 2rem;
 }
 
@@ -554,17 +554,71 @@ main {
   left: 6px;
 }
 
+/* Component - projectHeader */
+
+.projectHeader .projectColorPicker {
+  height: 24px;
+  width: 24px;
+  background-color: var(--secondary-dark);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.projectHeader .projectNameInput {
+  border: 0;
+  border-bottom: 3px solid var(--secondary-dark);
+  height: 35px;
+  text-indent: 2px;
+  background: 0;
+  outline: 0;
+}
+
+.projectHeader .projectDeleteButton {
+  height: 36px;
+  width: 36px;
+  border: 3px solid var(--primary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.projectHeader .projectDeleteButton:hover {
+  transform: scale(0.9);
+}
+
+.projectHeader .projectDeleteButton:active {
+  transform: scale(0.8);
+}
+
 /* Views - EmptyView */
 
 .emptyView {
+  display: grid;
+  grid:
+    'header' 1fr
+    'message' 9fr;
+}
+
+.emptyView .projectHeader {
+  grid-area: header;
+  place-self: center start;
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.emptyView .emptyHeader {
+  grid-area: message;
   place-self: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   background-color: var(--tertiary-dark);
   padding: 1rem;
   border: 4px solid var(--primary-dark);
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 
 .emptyTodoListMessage {
@@ -575,9 +629,19 @@ main {
 
 .projectTodoView {
   display: grid;
-  grid-template-areas: 'todos addtodo';
-  grid-template-columns: 9fr 1fr;
+  grid:
+    'header header' 1fr
+    'todos addtodo' 9fr
+    / 9fr 1fr;
   height: 100vh;
+}
+
+.projectTodoView .projectHeader {
+  place-self: center start;
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .todoContainerList {
