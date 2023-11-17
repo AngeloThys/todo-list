@@ -40,8 +40,8 @@ function setActiveClass(project) {
 
   projectButtonList.forEach((projectButton) => {
     if (parseInt(projectButton.dataset.projectId) === project.getId()) {
-      projectButton.childNodes[0].classList.add('active');
       projectButton.childNodes[1].classList.add('active');
+      projectButton.childNodes[2].classList.add('active');
     }
   });
 }
