@@ -1,0 +1,901 @@
+:root {
+  --primary-dark: #538083;
+  --secondary-dark: #426669;
+  --tertiary-dark: #75999c;
+  --background-dark: #98b3b5;
+  --primary-gold: #ffd43b;
+  --secondary-gold: #ccaa2f;
+  --tertiary-gold: #ffdd62;
+  --logo-gradient: linear-gradient(90deg, #ffd43b, #ffdd62);
+  font-size: 16px;
+}
+
+* {
+  font-family: 'Playpen Sans', cursive;
+  font-weight: 400;
+  color: black;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-areas: 'sidebar main';
+  background-color: white;
+}
+
+aside {
+  z-index: 1;
+  grid-area: sidebar;
+  display: grid;
+  grid-template-rows: auto 4fr 5fr;
+  padding: 2rem 2rem;
+  background-color: var(--primary-dark);
+  border-right: 4px solid var(--secondary-dark);
+  box-shadow: 2px 0 4px var(--secondary-dark);
+  max-height: 100vh;
+}
+
+aside * {
+  color: black;
+}
+
+header {
+  display: grid;
+}
+
+.logo {
+  place-self: center;
+}
+
+.logo > h1 {
+  position: relative;
+  z-index: 0;
+  margin: 0;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 3rem;
+  color: black;
+  text-shadow: 0 0 4px var(--secondary-gold);
+}
+
+.logo > h1::before {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  height: 2rem;
+  width: 8rem;
+  background: var(--logo-gradient);
+  transform: rotate(-20deg) translate(-30px, 10px);
+  border-radius: 10%;
+  box-shadow: 0 0 4px var(--secondary-gold);
+}
+
+.logo > h1::after {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  height: 2rem;
+  width: 8rem;
+  background: var(--logo-gradient);
+  transform: rotate(-20deg) translate(30px, -35px);
+  border-radius: 10%;
+  box-shadow: 0 0 4px var(--secondary-gold);
+}
+
+.filters {
+  place-self: center start;
+  display: grid;
+  gap: 2rem;
+}
+
+.projects {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.projects h2 {
+  text-decoration: underline solid 4px var(--primary-gold);
+}
+
+.filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.filter::before {
+  position: absolute;
+  left: -10px;
+  content: '';
+  border: 0;
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  transform: rotate(-15deg);
+  transition: all 0.1s ease-in-out;
+}
+
+.filter::after {
+  position: absolute;
+  left: -10px;
+  content: '';
+  border: 0;
+  height: 105%;
+  width: 115%;
+  border-radius: 50%;
+  transform: rotate(20deg);
+}
+
+.filter:hover::after,
+.filter:hover::before {
+  border: 2px solid var(--primary-gold);
+}
+
+.filter.active::after,
+.filter.active::before {
+  border: 2px solid white;
+}
+
+.sortIcon {
+  height: 1.2rem;
+  width: 1.2rem;
+  fill: var(--tertiary-gold);
+  stroke: var(--primary-gold);
+  stroke-width: 2;
+}
+
+main {
+  grid-area: main;
+  background-color: #ececec;
+  background-image: url('./images/bg-diagonal.svg');
+  display: grid;
+}
+
+/* Dialogs - createProject */
+
+.createProject {
+  padding: 0 1rem;
+  border: 4px solid var(--secondary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+}
+
+.createProjectContainer {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.createProjectContainer h2 {
+  font-size: 2rem;
+  margin: 0;
+  place-self: center;
+}
+
+.projectForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.projectNameContainer,
+.projectColorContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.projectNameContainer label {
+  font-size: 1.2rem;
+}
+
+.projectNameContainer input {
+  width: 75%;
+  height: 2.5rem;
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.projectColorContainer label {
+  font-size: 1.2rem;
+}
+
+.projectColorContainer input {
+  width: 25%;
+  height: 2.5rem;
+  border: 4px solid var(--secondary-dark);
+  border-radius: 4px;
+  padding: 0;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.createProjectButton {
+  place-self: center;
+  display: grid;
+  border: 0;
+  background: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.createProjectIcon {
+  place-self: center;
+  width: auto;
+  height: 3rem;
+  fill: var(--primary-gold);
+  stroke: black;
+  stroke-width: 1.5;
+}
+
+.createProjectButton:hover {
+  transform: scale(0.95);
+}
+
+.createProjectButton:active {
+  transform: scale(0.85);
+}
+
+/* Dialogs - createTodo */
+
+.createTodo {
+  padding: 1rem;
+  border: 4px solid var(--secondary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+}
+
+.createTodoContainer {
+  display: grid;
+}
+
+.createTodoContainer h2 {
+  place-self: center;
+  margin: 0;
+}
+
+.todoForm {
+  display: grid;
+  grid:
+    'title title desc' 1fr
+    'dueD dueD desc' 1fr
+    'prio stat desc' 1fr
+    'create create desc' 1fr /
+    1fr 1fr 2fr;
+  gap: 0 1rem;
+}
+
+.todoTitleContainer {
+  grid-area: title;
+  place-self: end start;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todoTitleContainer label {
+  font-size: 1.2rem;
+}
+
+.todoTitleContainer input {
+  width: 75%;
+  height: 2.5rem;
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.todoDescriptionContainer {
+  grid-area: desc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todoDescriptionContainer label {
+  font-size: 1.2rem;
+}
+
+.todoDescriptionContainer textarea {
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.todoDueDateContainer {
+  grid-area: dueD;
+  place-self: center start;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todoDueDateContainer label {
+  font-size: 1.2rem;
+}
+
+.todoDueDateContainer input {
+  width: 50%;
+  height: 2.5rem;
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.todoPriorityContainer {
+  grid-area: prio;
+  place-self: center;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.todoPriorityContainer label {
+  font-size: 1.2rem;
+}
+
+.cyclePriorityButton {
+  border: 2px solid transparent;
+  background: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  position: relative;
+}
+
+.cyclePriorityButton::before,
+.cyclePriorityButton::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  border: 2px solid transparent;
+  border-radius: 25%;
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.cyclePriorityButton::before {
+  transform: rotate(15deg);
+}
+
+.cyclePriorityButton::after {
+  transform: rotate(-15deg);
+}
+
+.cyclePriorityButton:hover::before,
+.cyclePriorityButton:hover::after {
+  border: 2px solid var(--primary-gold);
+}
+
+.cyclePriorityButton img {
+  width: 2rem;
+  height: auto;
+}
+
+.todoStatusContainer {
+  grid-area: stat;
+  place-self: center start;
+  font-size: 1.2rem;
+  display: block;
+  position: relative;
+  padding-right: 40px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.todoStatusContainer input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.todoStatusContainer .checkmark {
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  height: 40px;
+  width: 40px;
+  border: 4px solid var(--secondary-dark);
+  background-color: #eee;
+}
+
+.todoStatusContainer:hover .checkmark {
+  background-color: #ccc;
+}
+
+.todoStatusContainer input:checked ~ .checkmark {
+  background-color: var(--primary-gold);
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+  left: 9px;
+  top: 0px;
+  width: 10px;
+  height: 20px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
+.todoStatusContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.createTodoButton {
+  grid-area: create;
+  place-self: center;
+  display: grid;
+  border: 0;
+  background: 0;
+  padding: 0;
+  margin: 0;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.createTodoIcon {
+  place-self: center;
+  fill: var(--primary-gold);
+  stroke: black;
+  stroke-width: 1.5;
+  height: 3rem;
+  width: auto;
+}
+
+.createTodoButton:hover {
+  transform: scale(0.95);
+}
+
+.createTodoButton:active {
+  transform: scale(0.85);
+}
+
+/* Dialogs - modifyTodo */
+
+.modifyTodo {
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+}
+
+.modifyTodoContainer {
+  display: grid;
+  position: relative;
+  padding: 1rem;
+  border: 4px solid var(--secondary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+  grid:
+    'titl prio stat  .    dele' 1fr
+    'desc desc desc  .     .' 3fr
+    'desc desc desc dueD  dueD' 1fr
+    / 3fr 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.modifyTodoContainer .cyclePriorityButton {
+  grid-area: prio;
+  place-self: center;
+  display: grid;
+}
+
+.modifyTodoContainer .cyclePriorityButton img {
+  width: 36px;
+  height: 36px;
+}
+
+.modifyTodoContainer .deleteTodo {
+  grid-area: dele;
+  place-self: center;
+  border: 0;
+  background: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.modifyTodoContainer .deleteTodo:hover {
+  transform: scale(0.95);
+}
+
+.modifyTodoContainer .deleteTodo:active {
+  transform: scale(0.85);
+}
+
+.modifyTodoContainer .deleteTodo img {
+  width: 36px;
+  height: 36px;
+}
+
+.modifyTodoContainer .updateTitle {
+  grid-area: titl;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .updateDescription {
+  grid-area: desc;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .updateDueDate {
+  grid-area: dueD;
+  border: 4px solid var(--secondary-dark);
+  outline: 0;
+}
+
+.modifyTodoContainer .todoStatusContainer {
+  grid-area: stat;
+  position: absolute;
+  top: 0;
+  left: 6px;
+}
+
+/* Component - projectHeader */
+
+.projectHeader .projectColorPicker {
+  height: 24px;
+  width: 24px;
+  background-color: var(--secondary-dark);
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.projectHeader .projectNameInput {
+  border: 0;
+  border-bottom: 3px solid var(--secondary-dark);
+  height: 35px;
+  text-indent: 2px;
+  background: 0;
+  outline: 0;
+}
+
+.projectHeader .projectDeleteButton {
+  height: 36px;
+  width: 36px;
+  border: 3px solid var(--primary-dark);
+  border-radius: 4px;
+  background-color: var(--tertiary-dark);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.projectHeader .projectDeleteButton:hover {
+  transform: scale(0.9);
+}
+
+.projectHeader .projectDeleteButton:active {
+  transform: scale(0.8);
+}
+
+/* Views - EmptyView */
+
+.emptyView {
+  display: grid;
+  grid:
+    'header' 1fr
+    'message' 9fr;
+}
+
+.emptyView .projectHeader {
+  grid-area: header;
+  place-self: center start;
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.emptyView .emptyHeader {
+  grid-area: message;
+  place-self: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: var(--tertiary-dark);
+  padding: 1rem;
+  border: 4px solid var(--primary-dark);
+  border-radius: 4px;
+}
+
+.emptyTodoListMessage {
+  margin: 0;
+}
+
+/* Views - projectTodoView */
+
+.projectTodoView {
+  display: grid;
+  grid:
+    'header header' 1fr
+    'todos addtodo' 9fr
+    / 9fr 1fr;
+  height: 100vh;
+}
+
+.projectTodoView .projectHeader {
+  place-self: center start;
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.todoContainerList {
+  grid-area: todos;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem;
+  overflow-y: scroll;
+}
+
+.todoContainerList::-webkit-scrollbar {
+  width: 20px;
+  background-color: var(--tertiary-dark);
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px var(--tertiary-dark);
+}
+
+.todoContainerList::-webkit-scrollbar-thumb {
+  background-color: var(--primary-dark);
+  border: 2px solid var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.todoContainerList::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-dark);
+}
+
+.todoContainer {
+  height: 250px;
+  width: 250px;
+  background-color: var(--tertiary-dark);
+  border: 4px solid var(--primary-dark);
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px var(--secondary-dark);
+  padding: 1rem;
+  display: grid;
+  grid:
+    'pri . exp del' 1fr
+    'tit tit tit tit' 1fr
+    'des des des des' 1fr
+    'due due due sta' 1fr
+    / 1fr 1fr 1fr 1fr;
+}
+
+.todoContainer .cyclePriorityButton {
+  grid-area: pri;
+  place-self: center;
+}
+
+.todoContainer .openTodo {
+  grid-area: exp;
+  place-self: center;
+  background: 0;
+  border: 0;
+  padding: 0;
+  display: grid;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.todoContainer .openTodo:hover {
+  transform: scale(0.9);
+}
+
+.todoContainer .openTodo:active {
+  transform: scale(0.8);
+}
+
+.todoContainer .deleteTodo {
+  grid-area: del;
+  place-self: center;
+  background: 0;
+  border: 0;
+  padding: 0;
+  display: grid;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.todoContainer .deleteTodo:hover {
+  transform: scale(0.9);
+}
+
+.todoContainer .deleteTodo:active {
+  transform: scale(0.8);
+}
+
+.todoContainer .updateTitle {
+  grid-area: tit;
+  border: 0;
+  border-bottom: 2px solid var(--secondary-dark);
+  outline: 0;
+  background: 0;
+  height: 35px;
+  padding-left: 0.5rem;
+  margin: 0 1rem;
+}
+
+.todoContainer .descriptionTodo {
+  grid-area: des;
+  background-color: var(--tertiary-gold);
+  height: 35px;
+  line-height: 35px;
+  border-radius: 4px;
+  margin: 0 1rem;
+  display: inline-block;
+  padding-left: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.todoContainer .updateDueDate {
+  grid-area: due;
+  position: relative;
+  place-self: center;
+  width: 90%;
+  margin-left: 1rem;
+  top: 2px;
+  border: 4px solid var(--secondary-dark);
+  background-color: #ececec;
+}
+
+.todoContainer .todoStatusContainer {
+  place-self: start;
+  position: relative;
+  grid-area: sta;
+  padding: 0;
+  left: 40px;
+  top: 10px;
+}
+
+.projectTodoView .addTodo {
+  grid-area: addtodo;
+  place-self: end;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  height: 4rem;
+  width: 4rem;
+}
+
+/* Components - addTodoButton */
+
+.addTodo {
+  border: 2px solid var(--secondary-gold);
+  border-radius: 4px;
+  padding: 0.5rem;
+  background-color: var(--primary-gold);
+  display: grid;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.addTodoLogo {
+  place-self: center;
+}
+
+.addTodo:hover {
+  transform: scale(0.95);
+}
+
+.addTodo:active {
+  transform: scale(0.85);
+}
+
+/* Components - Sidebar - projectButton */
+.projectList {
+  margin: 1rem 0;
+}
+
+.project {
+  display: flex;
+  align-items: center;
+  border: 0;
+  background: 0;
+  margin: 0;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.projectName {
+  margin: 0;
+  font-size: 1rem;
+  position: relative;
+}
+
+.projectName:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  background-color: var(--primary-gold);
+  width: 0;
+  height: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.projectName.hover:after {
+  width: 100%;
+}
+
+.projectName.active:after {
+  width: 100%;
+  background-color: white;
+}
+
+.projectLogo {
+  transition: filter 0.3s step-end;
+  fill: black;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.projectLogo.hover {
+  filter: invert(98%) sepia(78%) saturate(2055%) hue-rotate(322deg)
+    brightness(100%) contrast(105%);
+}
+
+.projectLogo.active {
+  filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(169deg)
+    brightness(105%) contrast(106%);
+}
+
+.colorLogo {
+  height: 14px;
+  width: 14px;
+  border: 2px solid var(--secondary-dark);
+  transform: rotate(45deg);
+  box-shadow: 0px 0px 4px var(--secondary-dark);
+}
+
+/* Components - Sidebar - addProjectButton */
+.addProject {
+  display: grid;
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid var(--secondary-gold);
+  border-radius: 4px;
+  background-color: var(--primary-gold);
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.addProject:hover {
+  transform: scale(0.98);
+}
+
+.addProject:active {
+  transform: scale(0.95);
+}
+
+.addProjectLogo {
+  place-self: center;
+}
