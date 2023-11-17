@@ -1,3 +1,9 @@
+import plusImage from '../images/plus.svg';
+import expandImage from '../images/maximize.svg';
+import deleteImage from '../images/delete.svg';
+import priority1Image from '../images/priority1.svg';
+import priority2Image from '../images/priority2.svg';
+import priority3Image from '../images/priority3.svg';
 import * as storage from '../storage';
 import { setProjectView } from './main';
 import { populateModifyTodoDialog } from '../views/modifyTodoDialog';
@@ -22,7 +28,7 @@ export function createAddTodoButton() {
 function createAddTodoLogo() {
   const addTodoLogo = document.createElement('img');
 
-  addTodoLogo.src = '../images/plus.svg';
+  addTodoLogo.src = plusImage;
   addTodoLogo.className = 'addTodoLogo';
 
   return addTodoLogo;
@@ -141,7 +147,7 @@ export function createDeleteButton(project, todo) {
   const deleteButton = document.createElement('button');
   const deleteIcon = document.createElement('img');
 
-  deleteIcon.src = '../images/delete.svg';
+  deleteIcon.src = deleteImage;
 
   deleteButton.className = 'deleteTodo';
   deleteButton.appendChild(deleteIcon);
@@ -171,7 +177,7 @@ export function createExpandButton() {
   const expandIcon = document.createElement('img');
   const modifyTodoDialog = document.querySelector('.modifyTodo');
 
-  expandIcon.src = '../images/maximize.svg';
+  expandIcon.src = expandImage;
 
   expandButton.className = 'openTodo';
   expandButton.appendChild(expandIcon);
@@ -222,13 +228,13 @@ export function createPriorityIcon(todo) {
 
   switch (currentPriority) {
     case '1':
-      priorityIcon.src = '../images/priority1.svg';
+      priorityIcon.src = priority1Image;
       break;
     case '2':
-      priorityIcon.src = '../images/priority2.svg';
+      priorityIcon.src = priority2Image;
       break;
     case '3':
-      priorityIcon.src = '../images/priority3.svg';
+      priorityIcon.src = priority3Image;
       break;
   }
 

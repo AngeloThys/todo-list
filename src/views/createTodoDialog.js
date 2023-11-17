@@ -1,3 +1,6 @@
+import priority1Image from '../images/priority1.svg';
+import priority2Image from '../images/priority2.svg';
+import priority3Image from '../images/priority3.svg';
 import * as storage from '../storage';
 import * as main from '../components/main';
 
@@ -78,13 +81,13 @@ function createPriorityIcon() {
 
   switch (currentPriority) {
     case '1':
-      priorityIcon.src = '../images/priority1.svg';
+      priorityIcon.src = priority1Image;
       break;
     case '2':
-      priorityIcon.src = '../images/priority2.svg';
+      priorityIcon.src = priority2Image;
       break;
     case '3':
-      priorityIcon.src = '../images/priority3.svg';
+      priorityIcon.src = priority3Image;
       break;
   }
 

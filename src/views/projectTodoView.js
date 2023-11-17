@@ -1,3 +1,4 @@
+import deleteImage from '../images/delete.svg';
 import * as components from '../components/components.js';
 import * as helpers from '../helpers.js';
 import * as storage from '../storage.js';
@@ -84,7 +85,7 @@ function updateProjectName(project, newProjectName) {
 function createProjectDeleteButton(project) {
   const deleteButton = document.createElement('img');
 
-  deleteButton.src = '../images/delete.svg';
+  deleteButton.src = deleteImage;
   deleteButton.className = 'projectDeleteButton';
   deleteButton.addEventListener('click', () => {
     storage.deleteProject(project);

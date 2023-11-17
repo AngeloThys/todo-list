@@ -1,3 +1,5 @@
+import arrowRightImage from '../images/arrow-right.svg';
+import plusImage from '../images/plus.svg';
 import * as storage from '../storage';
 import * as main from './main';
 import setTodayTodoView from '../views/todayTodoView';
@@ -96,7 +98,7 @@ function createProjectButtonLogo() {
   const projectButtonLogo = document.createElement('img');
 
   projectButtonLogo.className = 'projectLogo';
-  projectButtonLogo.src = '../images/arrow-right.svg';
+  projectButtonLogo.src = arrowRightImage;
 
   return projectButtonLogo;
 }
@@ -134,7 +136,7 @@ function createAddProjectButton() {
 function createAddProjectLogo() {
   const addTodoLogo = document.createElement('img');
 
-  addTodoLogo.src = '../images/plus.svg';
+  addTodoLogo.src = plusImage;
   addTodoLogo.className = 'addProjectLogo';
 
   return addTodoLogo;
